@@ -1,0 +1,70 @@
+
+<MTextInput@TextInput>:
+	canvas.before:
+		Color:
+			rgba: 1, 0, 0, 1
+		Line:
+			rectangle: (self.pos[1], self.size[0], self.pos[1], self.size[1])
+			width: 3
+
+
+<Home>
+	BoxLayout:
+		orientation: 'vertical'
+		MDTopAppBar:
+			id: toolbar
+			title: "Cipher Text Generator"
+			pos_hint: {'top': 1}
+			right_action_items: [["rotate-3d-variant", lambda x: root.flip()]]
+		# MDTabs: 
+		# 	id: tabs
+		# 	on_tab_switch: app.on_tab_switch(*args)
+
+
+		MDTextField:
+			id: input_text
+			hint_text: "Paste Block Text Here"
+			pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+			size_hint: 0.75, 0.4
+			font_size: "25sp"
+			font_name: 'arial'
+			multiline: True
+
+		BoxLayout:
+			size_hint: 0.5, 0.2
+			pos_hint: {'center_x': 0.5}
+			spacing: "20sp"
+			MDFillRoundFlatButton:
+				id: action_button
+				text: "Generate" 
+				font_size: "25sp"
+				size_hint: 0.25, 0.5
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				on_press: root.generate()
+			MDFillRoundFlatButton:
+				id: export_button
+				text: "Export Text" 
+				font_size: "25sp"
+				size_hint: 0.25, 0.5
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				on_press: lambda x: root.export()
+
+
+		MDTextField:
+			id: output_text
+			hint_text: "Result Cipher Text"
+			pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+			size_hint: 0.75, 0.4
+			font_size: "25sp"
+			multiline: True
+			# disabled: True
+
+		
+
+<Tab>:
+	MDIconButton:
+		id: icon
+		icon: app.icons[0]
+		user_font_size: "48sp"
+		pos_hint: {'center_x': .5, 'center_y': .5}
+	
